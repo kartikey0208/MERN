@@ -1,11 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require("cors");
-
+//const cors = require("cors");
 const path = require("path");
 const app = express();
+//app.use(express.json());
 app.use(bodyParser.json());
-app.use(cors());
+//app.use(cors());
 
 let todos = [];
 
@@ -39,11 +39,26 @@ app.get('/todos/:id', (req, res) => {
 });
 
 app.post('/todos', (req, res) => {
+  console.log(req);
   const newTodo = {
     id: ctr, // unique random id
-    title: req.body.title,
-    description: req.body.description
+    title: "",
+    message: "moj lo bhai",
+    description: ""
   };
+  console.log(req);
+  console.log(req.body);
+  console.log(req.body.title);
+  console.log(req.body.descrption);
+
+  if (req.body && req.body.title) {
+    newTodo.title = req.body.title;
+  }
+  
+  if (req.body && req.body.description) {
+    newTodo.description = req.body.description;
+  }
+  console.log(newTodo);
   ctr++;
   todos.push(newTodo);
   res.status(201).json(newTodo);
