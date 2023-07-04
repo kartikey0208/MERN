@@ -39,17 +39,13 @@ app.get('/todos/:id', (req, res) => {
 });
 
 app.post('/todos', (req, res) => {
-  console.log(req);
+  console.log(req.body);
   const newTodo = {
     id: ctr, // unique random id
     title: "",
     message: "moj lo bhai",
     description: ""
   };
-  console.log(req);
-  console.log(req.body);
-  console.log(req.body.title);
-  console.log(req.body.descrption);
 
   if (req.body && req.body.title) {
     newTodo.title = req.body.title;
