@@ -1,0 +1,22 @@
+<head>
+    <script>
+        function parsedResponse(data){
+            console.log(data);
+        }
+
+        function callback() {
+            resp.json.then(parsedResponse);
+        }
+       fetch("http://localhost:3000/todos", {
+                method: "GET",
+            }).then(callback).catch(alert("error"));
+    </script>
+</head>
+
+<body>
+    Todo title
+    <input type="text" id="title"></input>
+    Todo discription
+    <input type="text" id="description"></input>
+    <button onclick="onPress()">send todo</button>
+</body>
