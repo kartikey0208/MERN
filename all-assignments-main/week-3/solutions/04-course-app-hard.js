@@ -49,12 +49,11 @@ const authenticateJwt = (req, res, next) => {
 };
 
 // Connect to MongoDB
-// DONT MISUSE THIS THANKYOU!!
-mongoose.connect('mongodb+srv://kirattechnologies:iRbi4XRDdM7JMMkl@cluster0.e95bnsi.mongodb.net/courses', { useNewUrlParser: true, useUnifiedTopology: true, dbName: "courses" });
+mongoose.connect('mongodb+srv://kartikey02:0fFKHVdz8v8Xi1JY@cluster0.gakbdrh.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true, dbName: "courses" });
 
-app.post('/admin/signup', (req, res) => {
+app.post('/admin/signup', async (req, res) => {
   const { username, password } = req.body;
-  function callback(admin) {
+  connst admin = await Admin.findOne({ username });
     if (admin) {
       res.status(403).json({ message: 'Admin already exists' });
     } else {
@@ -64,10 +63,7 @@ app.post('/admin/signup', (req, res) => {
       const token = jwt.sign({ username, role: 'admin' }, SECRET, { expiresIn: '1h' });
       res.json({ message: 'Admin created successfully', token });
     }
-
-  }
-  Admin.findOne({ username }).then(callback);
-});
+  });
 
 app.post('/admin/login', async (req, res) => {
   const { username, password } = req.headers;

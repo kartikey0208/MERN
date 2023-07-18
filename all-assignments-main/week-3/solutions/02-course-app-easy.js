@@ -68,12 +68,7 @@ app.get('/admin/courses', adminAuthentication, (req, res) => {
 });
 
 app.post('/users/signup', (req, res) => {
-  // const user = {...req.body, purchasedCourses: []};
-  const user = {
-    username: req.body.username,
-    password: req.body.password,
-    purchasedCourses: []
-  }
+  const user = {...req.body, purchasedCourses: []};
   USERS.push(user);
   res.json({ message: 'User created successfully' });
 });
@@ -108,7 +103,7 @@ app.get('/users/purchasedCourses', userAuthentication, (req, res) => {
   // const purchasedCourses = COURSES.filter(c => req.user.purchasedCourses.includes(c.id));
   // We need to extract the complete course object from COURSES
   // which have ids which are present in req.user.purchasedCourses
-  var purchasedCourseIds = req.user.purchasedCourses; [1, 4];
+  var purchasedCourseIds = req.user.purchasedCourses;
   var purchasedCourses = [];
   for (let i = 0; i<COURSES.length; i++) {
     if (purchasedCourseIds.indexOf(COURSES[i].id) !== -1) {

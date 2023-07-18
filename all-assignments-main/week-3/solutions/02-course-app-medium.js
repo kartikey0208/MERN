@@ -8,7 +8,7 @@ let ADMINS = [];
 let USERS = [];
 let COURSES = [];
 
-const secretKey = "superS3cr3t1"; // replace this with your own secret key
+const secretKey = "superS3cr3t1";
 
 const generateJwt = (user) => {
   const payload = { username: user.username, };
